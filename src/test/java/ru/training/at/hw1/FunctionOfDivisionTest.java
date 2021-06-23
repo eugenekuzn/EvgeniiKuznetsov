@@ -7,6 +7,8 @@ import org.testng.annotations.Test;
 
 public class FunctionOfDivisionTest {
 
+    private static Calculator calculator;
+
     @DataProvider(name = "test-data")
     public static Object[][] dataForDivision() {
         return new Object[][] {{125.0, 5.0, 25.0}, {0.25, 0.5, 0.5}, {135.0, 0.5, 270.0}, {-10.0, -5.0, 2.0}};
@@ -14,9 +16,8 @@ public class FunctionOfDivisionTest {
 
     @Test(dataProvider = "test-data", groups = GroupTags.MULT_AND_DIV_GROUP)
     public void division(Double a, Double b, Double expected) {
-        Calculator calculator = new Calculator();
+        calculator = new Calculator();
         Double actual = calculator.div(a, b);
         Assert.assertEquals(actual, expected);
     }
 }
-

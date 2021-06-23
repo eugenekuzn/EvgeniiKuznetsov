@@ -6,6 +6,7 @@
       <class name="ru.training.at.hw1.FunctionOfDivisionTest"/>
       <class name="ru.training.at.hw1.FunctionOfAdditionTest"/>
       <class name="ru.training.at.hw1.FunctionOfSubtractionTest"/>
+      <class name="ru.training.at.hw1.CosineCalculationTest"/>
     </classes>
   </test>
 </suite>
