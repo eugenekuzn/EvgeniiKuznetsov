@@ -17,6 +17,8 @@
     <suiteXmlPATH>${project.build.testOutputDirectory}/testconfigs</suiteXmlPATH>
 
     <!--   properties of all versions-->
+    <selenium-java.version>3.141.59</selenium-java.version>
+    <webdrivermanager.version>4.4.3</webdrivermanager.version>
     <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
     <commons-lang3.version>3.12.0</commons-lang3.version>
     <testng.version>7.4.0</testng.version>
@@ -41,6 +43,19 @@
       <groupId>org.testng</groupId>
       <artifactId>testng</artifactId>
       <version>${testng.version}</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.seleniumhq.selenium</groupId>
+      <artifactId>selenium-java</artifactId>
+      <version>${selenium-java.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>io.github.bonigarcia</groupId>
+      <artifactId>webdrivermanager</artifactId>
+      <version>${webdrivermanager.version}</version>
       <scope>test</scope>
     </dependency>
 
@@ -96,7 +111,7 @@
         <version>${maven-surefire-plugin.version}</version>
         <configuration>
           <suiteXmlFiles>
-            <suiteXmlFile>${suiteXmlPATH}/AdditionAndSubtractionFunctionConfigs.xml</suiteXmlFile>
+            <suiteXmlFile>${suiteXmlPATH}/AllLayoutCheckingConfigs.xml</suiteXmlFile>
           </suiteXmlFiles>
         </configuration>
       </plugin>
@@ -151,6 +166,24 @@
             <configuration>
               <suiteXmlFiles>
                 <suiteXmlFile>${suiteXmlPATH}/CosineCalculationTestsConfigs.xml</suiteXmlFile>
+              </suiteXmlFiles>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <profile>
+      <id>LayoutTests</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <version>${maven-surefire-plugin.version}</version>
+            <configuration>
+              <suiteXmlFiles>
+                <suiteXmlFile>${suiteXmlPATH}/AllLayoutCheckingConfigs.xml</suiteXmlFile>
               </suiteXmlFiles>
             </configuration>
           </plugin>
