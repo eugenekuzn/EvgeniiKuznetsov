@@ -25,7 +25,6 @@ public class LayoutCheckingTest {
         WebDriverManager.chromedriver().setup();
     }
 
-
     @BeforeClass
     public void setUpEnvironment() {
         webDriver = new ChromeDriver();
@@ -43,12 +42,13 @@ public class LayoutCheckingTest {
 
         //3. Perform login
         //open input fields
-        webDriver.findElement(By.xpath("//li[@class = 'dropdown uui-profile-menu']")).click();
+        webDriver.findElement(By.className("profile-photo")).click();
         //input name and password values in corresponding fields
-        webDriver.findElement(By.xpath("//input[@id = 'name']")).sendKeys(login);
-        webDriver.findElement(By.xpath("//input[@id = 'password']")).sendKeys(password);
+        webDriver.findElement(By.id("name")).sendKeys(login);
+        webDriver.findElement(By.id("password")).sendKeys(password);
         //push "Enter" button
-        webDriver.findElement(By.cssSelector("button[type ='submit")).click();
+        webDriver.findElement(By.id("login-button")).click();
+        ;
 
         //4. Assert Username is loggined
         WebElement username = webDriver.findElement(By.id("user-name"));
@@ -103,29 +103,29 @@ public class LayoutCheckingTest {
 
         //9. Switch to the iframe and check that there is “Frame Button” in the iframe
         webDriver.switchTo().frame("frame");
-        webDriver.findElement(By.cssSelector("input[class=\"btn btn-info\"]"));
+        webDriver.findElement(By.id("frame-button"));
 
         //10. Switch to original window back
         webDriver.switchTo().defaultContent();
 
         //11. Assert that there are 5 items in the Left Section are displayed and they have proper text
         //Home
-        WebElement homeElemOnLeftSIde = webDriver.findElement(By.xpath("//div[@name=\"navigation-sidebar\"]//*[@href=\"index.html\"]"));
+        WebElement homeElemOnLeftSIde = webDriver.findElement(By.xpath("//span[text() = 'Home']"));
         Assert.assertEquals(homeElemOnLeftSIde.getText(), "Home");
         //Contact form
-        WebElement contactFormElemOnLeftSIde = webDriver.findElement(By.xpath("//div[@name=\"navigation-sidebar\"]//*[@href=\"contacts.html\"]"));
+        WebElement contactFormElemOnLeftSIde = webDriver.findElement(By.xpath("//span[text() = 'Contact form']"));
         Assert.assertEquals(contactFormElemOnLeftSIde.getText(), "Contact form");
         //Service
         WebElement serviceElemOnLeftSIde =
-            webDriver.findElement(By.xpath("//div[@name=\"navigation-sidebar\"]//span[contains(text(), 'Service')]"));
+            webDriver.findElement(By.xpath("//span[text() = 'Service']"));
         Assert.assertEquals(serviceElemOnLeftSIde.getText(), "Service");
         //Metals & Colors
         WebElement metalNColorsElemOnLeftSIde =
-            webDriver.findElement(By.xpath("//div[@name=\"navigation-sidebar\"]//*[@href=\"metals-colors.html\"]"));
+            webDriver.findElement(By.xpath("//span[text() = 'Metals & Colors']"));
         Assert.assertEquals(metalNColorsElemOnLeftSIde.getText(), "Metals & Colors");
         //Elements packs
         WebElement elementPacksElemOnLeftSIde = webDriver
-            .findElement(By.xpath("//div[@name=\"navigation-sidebar\"]//span[contains(text(), 'Elements packs')]"));
+            .findElement(By.xpath("//span[text() = 'Elements packs']"));
         Assert.assertEquals(elementPacksElemOnLeftSIde.getText(), "Elements packs");
     }
 
@@ -133,6 +133,7 @@ public class LayoutCheckingTest {
     @AfterTest
     public void closingTest() {
         if (webDriver != null) {
+            webDriver.close();
             webDriver.quit();
         }
     }

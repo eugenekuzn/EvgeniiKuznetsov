@@ -42,52 +42,51 @@ public class CheckboxesRadioButtonsNDropdownsCheckingTest {
 
         //3. Perform login
         //open input fields
-        webDriver.findElement(By.xpath("//li[@class = 'dropdown uui-profile-menu']")).click();
+        webDriver.findElement(By.className("profile-photo")).click();
         //input name and password values in corresponding fields
-        webDriver.findElement(By.xpath("//input[@id = 'name']")).sendKeys(login);
-        webDriver.findElement(By.xpath("//input[@id = 'password']")).sendKeys(password);
+        webDriver.findElement(By.id("name")).sendKeys(login);
+        webDriver.findElement(By.id("password")).sendKeys(password);
         //push "Enter" button
-        webDriver.findElement(By.cssSelector("button[type ='submit")).click();
+        webDriver.findElement(By.id("login-button")).click();
 
         //4. Assert Username is loggined
         WebElement username = webDriver.findElement(By.id("user-name"));
         Assert.assertEquals(username.getText(), "ROMAN IOVLEV");
 
         //5. Open through the header menu Service -> Different Elements Page
-        webDriver.findElement(By.xpath("//*[@class=\"dropdown-toggle\"]")).click();
-        webDriver.findElement(By.xpath("//*[@href=\"different-elements.html\"]")).click();
+        webDriver.findElement(By.className("dropdown-toggle")).click();
+        webDriver.findElement(By.xpath("//a[text() = 'Different elements']")).click();
 
         //6. Select checkboxes
         //Water
-        webDriver.findElement(By.xpath("//label[1]//input[@type=\"checkbox\"]")).click();
+        webDriver.findElement(By.cssSelector(".label-checkbox:nth-of-type(1)")).click();
         //Wind
-        webDriver.findElement(By.xpath("//label[3]//input[@type=\"checkbox\"]")).click();
+        webDriver.findElement(By.cssSelector(".label-checkbox:nth-of-type(3)")).click();
 
         //7. Select radio
         //Selen
-        webDriver.findElement(By.xpath("//label[4]//input[@type=\"radio\"]")).click();
+        webDriver.findElement(By.cssSelector(".label-radio:nth-of-type(4)")).click();
 
         //8. Select in dropdown
-        webDriver.findElement(By.cssSelector("select[class = 'uui-form-element']")).click();
-        webDriver.findElement(By.xpath("//select//option[contains(text(), 'Yellow')]")).click();
+        webDriver.findElement(By.className("colors")).findElement(By.cssSelector("option:nth-of-type(4)")).click();
 
         //9. Assert that:
         //9.1 for each checkbox there is an individual log row and value is corresponded to the status of checkbox
         //water checkbox
         WebElement waterCheckbox =
-            webDriver.findElement(By.xpath("//ul[@class=\"panel-body-list logs\"]//li[contains(text(), 'Water')]"));
+            webDriver.findElement(By.xpath("//li[contains(text(),'Water')]"));
         Assert.assertTrue(waterCheckbox.getText().contains("Water: condition changed to true"));
         //wind checkbox
         WebElement windCheckbox =
-            webDriver.findElement(By.xpath("//ul[@class=\"panel-body-list logs\"]//li[contains(text(), 'Wind')]"));
+            webDriver.findElement(By.xpath("//li[contains(text(),'Wind')]"));
         Assert.assertTrue(windCheckbox.getText().contains("Wind: condition changed to true"));
         //9.2 for radio button there is a log row and value is corresponded to the status of radio button
         WebElement selenRadiobutton =
-            webDriver.findElement(By.xpath("//ul[@class=\"panel-body-list logs\"]//li[contains(text(), 'Selen')]"));
+            webDriver.findElement(By.xpath("//li[contains(text(),'Selen')]"));
         Assert.assertTrue(selenRadiobutton.getText().contains("metal: value changed to Selen"));
         //9.3 for dropdown there is a log row and value is corresponded to the selected value
         WebElement yellowColor =
-            webDriver.findElement(By.xpath("//ul[@class=\"panel-body-list logs\"]//li[contains(text(), 'Yellow')]"));
+            webDriver.findElement(By.xpath("//li[contains(text(),'Yellow')]"));
         Assert.assertTrue(yellowColor.getText().contains("Colors: value changed to Yellow"));
     }
 
@@ -95,6 +94,7 @@ public class CheckboxesRadioButtonsNDropdownsCheckingTest {
     @AfterTest
     public void closingTest() {
         if (webDriver != null) {
+            webDriver.close();
             webDriver.quit();
         }
     }
