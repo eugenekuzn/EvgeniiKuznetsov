@@ -7,38 +7,35 @@ import org.openqa.selenium.support.PageFactory;
 
 public class LeftSideMenuOfHomePageObjects {
     @FindBy(xpath = "//span[text() = 'Home']")
-    WebElement leftHomeLink;
+    private WebElement leftHomeLink;
     @FindBy(xpath = "//span[text() = 'Contact form']")
-    WebElement leftContactFormLink;
+    private WebElement leftContactFormLink;
     @FindBy(xpath = "//span[text() = 'Service']")
-    WebElement leftServiceLink;
+    private WebElement leftServiceLink;
     @FindBy(xpath = "//span[text() = 'Metals & Colors']")
-    WebElement leftMetalNColorLink;
+    private WebElement leftMetalNColorLink;
     @FindBy(xpath = "//span[text() = 'Elements packs']")
-    WebElement leftElementsPacksLink;
+    private WebElement leftElementsPacksLink;
 
     protected LeftSideMenuOfHomePageObjects(WebDriver driver) {
         PageFactory.initElements(driver, this);
     }
 
-    public WebElement getLeftHomeLink() {
-        return leftHomeLink;
-    }
-
-    public WebElement getLeftContactFormLink() {
-        return leftContactFormLink;
-    }
-
-    public WebElement getLeftServiceLink() {
-        return leftServiceLink;
-    }
-
-    public WebElement getLeftMetalNColorLink() {
-        return leftMetalNColorLink;
-    }
-
-    public WebElement getLeftElementsPacksLink() {
-        return leftElementsPacksLink;
+    public String getLeftSideMenuElementText(String nameOfCheckingElement) {
+        switch (nameOfCheckingElement) {
+            case "Home":
+                return leftHomeLink.getText();
+            case "Contact form":
+                return leftContactFormLink.getText();
+            case "Service":
+                return leftServiceLink.getText();
+            case "Metals & Colors":
+                return leftMetalNColorLink.getText();
+            case "Elements packs":
+                return leftElementsPacksLink.getText();
+            default:
+                return null;
+        }
     }
 }
 

@@ -14,6 +14,12 @@ public class TestProperties {
     protected final String login = "Roman";
     protected final String password = "Jdi1234";
 
+    protected final String home = "Home";
+    protected final String contactForm = "Contact form";
+    protected final String service = "Service";
+    protected final String metalsNColors = "Metals & Colors";
+    protected final String elementsPacks = "Elements packs";
+
     protected static WebDriver webDriver;
 
     @BeforeTest

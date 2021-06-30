@@ -39,7 +39,7 @@ public class HomePage {
     private WebElement textUnderFourthImg;
 
     //frame
-    @FindBy(css = "iframe[id='frame']")
+    @FindBy(id = "frame")
     private WebElement frame;
 
     public HomePage(WebDriver driver) {
@@ -69,8 +69,7 @@ public class HomePage {
     }
 
     public void openDifferentElementsPage() {
-        headerOfHomePageObjects.getServiceLink().click();
-        headerOfHomePageObjects.getDifferentElementsSubLink().click();
+        headerOfHomePageObjects.accessToDifferentElementsPage();
     }
 
     public WebElement getFirstImg() {

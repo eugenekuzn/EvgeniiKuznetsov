@@ -30,17 +30,14 @@ public class CheckboxesRadioButtonsNDropdownsCheckingTest extends TestProperties
 
         //6. Select checkboxes
         DifferentElementsPage differentElementsPage = new DifferentElementsPage(webDriver);
-        //Water
-        differentElementsPage.getWaterCheckBox().click();
-        //Wind
-        differentElementsPage.getWindCheckBox().click();
+        differentElementsPage.selectCheckbox("Water");
+        differentElementsPage.selectCheckbox("Wind");
 
         //7. Select radio
-        //Selen
-        differentElementsPage.getSelenRadioButton().click();
+        differentElementsPage.selectRadioButton("Selen");
 
         //8. Select in dropdown
-        differentElementsPage.getYellowOption().click();
+        differentElementsPage.selectColorOption("Yellow");
 
         //9. Assert that:
         //9.1 for each checkbox there is an individual log row and value is corresponded to the status of checkbox

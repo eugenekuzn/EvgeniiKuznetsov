@@ -25,32 +25,25 @@ public class LayoutCheckingTest extends TestProperties {
         Assert.assertEquals(homePage.getHeaderOfHomePageObjects().getUsername(), "ROMAN IOVLEV");
 
         //5. Assert that there are 4 items on the header section are displayed and they have proper texts
-        Assert.assertEquals(homePage.getHeaderOfHomePageObjects().getHomeLink().getText(), "HOME");
-        Assert.assertEquals(homePage.getHeaderOfHomePageObjects().getContactFormLink().getText(), "CONTACT FORM");
-        Assert.assertEquals(homePage.getHeaderOfHomePageObjects().getServiceLink().getText(), "SERVICE");
-        Assert.assertEquals(homePage.getHeaderOfHomePageObjects().getMetalNColorLink().getText(), "METALS & COLORS");
+        Assert.assertEquals(homePage.getHeaderOfHomePageObjects().getHeaderElementText(home), "HOME");
+        Assert.assertEquals(homePage.getHeaderOfHomePageObjects().getHeaderElementText(contactForm), "CONTACT FORM");
+        Assert.assertEquals(homePage.getHeaderOfHomePageObjects().getHeaderElementText(service), "SERVICE");
+        Assert
+            .assertEquals(homePage.getHeaderOfHomePageObjects().getHeaderElementText(metalsNColors), "METALS & COLORS");
 
         //6. Assert that there are 4 images on the Index Page and they are displayed
-        //check the first image
         homePage.getFirstImg().isDisplayed();
-        //check the second image
         homePage.getSecondImg().isDisplayed();
-        //check the third image
         homePage.getThirdImg().isDisplayed();
-        //check the fourth image
         homePage.getFourthImg().isDisplayed();
 
         //7. Assert that there are 4 texts on the Index Page under icons and they have proper text
-        //check the first text
         Assert.assertEquals(homePage.getTextUnderFirstImg(), "To include good practices\n"
             + "and ideas from successful\n"
             + "EPAM project");
-        //check the second text
         Assert.assertEquals(homePage.getTextUnderSecondImg(), "To be flexible and\n"
             + "customizable");
-        //check the third text
         Assert.assertEquals(homePage.getTextUnderThirdImg(), "To be multiplatform");
-        //check the fourth text
         Assert.assertEquals(homePage.getTextUnderFourthImg(), "Already have good base\n"
             + "(about 20 internal and\n"
             + "some external projects),\n"
@@ -67,13 +60,13 @@ public class LayoutCheckingTest extends TestProperties {
         webDriver.switchTo().defaultContent();
 
         //11. Assert that there are 5 items in the Left Section are displayed and they have proper text
-        Assert.assertEquals(homePage.getLeftSideMenuOfHomePageObjects().getLeftHomeLink().getText(), "Home");
-        Assert.assertEquals(homePage.getLeftSideMenuOfHomePageObjects().getLeftContactFormLink().getText(),
+        Assert.assertEquals(homePage.getLeftSideMenuOfHomePageObjects().getLeftSideMenuElementText(home), "Home");
+        Assert.assertEquals(homePage.getLeftSideMenuOfHomePageObjects().getLeftSideMenuElementText(contactForm),
             "Contact form");
-        Assert.assertEquals(homePage.getLeftSideMenuOfHomePageObjects().getLeftServiceLink().getText(), "Service");
-        Assert.assertEquals(homePage.getLeftSideMenuOfHomePageObjects().getLeftMetalNColorLink().getText(),
+        Assert.assertEquals(homePage.getLeftSideMenuOfHomePageObjects().getLeftSideMenuElementText(service), "Service");
+        Assert.assertEquals(homePage.getLeftSideMenuOfHomePageObjects().getLeftSideMenuElementText(metalsNColors),
             "Metals & Colors");
-        Assert.assertEquals(homePage.getLeftSideMenuOfHomePageObjects().getLeftElementsPacksLink().getText(),
+        Assert.assertEquals(homePage.getLeftSideMenuOfHomePageObjects().getLeftSideMenuElementText(elementsPacks),
             "Elements packs");
     }
 }

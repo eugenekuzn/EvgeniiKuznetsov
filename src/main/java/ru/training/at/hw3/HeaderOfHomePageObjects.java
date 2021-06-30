@@ -8,14 +8,14 @@ import org.openqa.selenium.support.PageFactory;
 public class HeaderOfHomePageObjects {
     @FindBy(id = "user-name")
     WebElement username;
-    @FindBy(xpath = "//*[@href=\"index.html\"]")
+    @FindBy(xpath = "//a[text() = 'Home']")
     WebElement homeLink;
-    @FindBy(xpath = "//*[@href=\"contacts.html\"]")
+    @FindBy(xpath = "//a[text() = 'Contact form']")
     WebElement contactFormLink;
     @FindBy(className = "dropdown-toggle")
     WebElement serviceLink;
-    @FindBy(xpath = "//*[@href=\"metals-colors.html\"]")
-    WebElement metalNColorLink;
+    @FindBy(xpath = "//a[text() = 'Metals & Colors']")
+    WebElement metalsNColorsLink;
     @FindBy(xpath = "//a[text() = 'Different elements']")
     WebElement differentElementsSubLink;
 
@@ -27,23 +27,23 @@ public class HeaderOfHomePageObjects {
         return username.getText();
     }
 
-    public WebElement getHomeLink() {
-        return homeLink;
+    public String getHeaderElementText(String nameOfCheckingElement) {
+        switch (nameOfCheckingElement) {
+            case "Home":
+                return homeLink.getText();
+            case "Contact form":
+                return contactFormLink.getText();
+            case "Service":
+                return serviceLink.getText();
+            case "Metals & Colors":
+                return metalsNColorsLink.getText();
+            default:
+                return null;
+        }
     }
 
-    public WebElement getContactFormLink() {
-        return contactFormLink;
-    }
-
-    public WebElement getServiceLink() {
-        return serviceLink;
-    }
-
-    public WebElement getMetalNColorLink() {
-        return metalNColorLink;
-    }
-
-    public WebElement getDifferentElementsSubLink() {
-        return differentElementsSubLink;
+    public void accessToDifferentElementsPage() {
+        serviceLink.click();
+        differentElementsSubLink.click();
     }
 }

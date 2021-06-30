@@ -7,13 +7,13 @@ import org.openqa.selenium.support.PageFactory;
 
 public class LogPanelOfDifferentElementsPage {
     @FindBy(xpath = "//li[contains(text(),'Water')]")
-    WebElement logForWaterCheckBox;
+    private WebElement logForWaterCheckBox;
     @FindBy(xpath = "//li[contains(text(),'Wind')]")
-    WebElement logForWindCheckBox;
+    private WebElement logForWindCheckBox;
     @FindBy(xpath = "//li[contains(text(),'Selen')]")
-    WebElement logForSelenRadioButton;
+    private WebElement logForSelenRadioButton;
     @FindBy(xpath = "//li[contains(text(),'Yellow')]")
-    WebElement logForYellowOption;
+    private WebElement logForYellowOption;
 
     protected LogPanelOfDifferentElementsPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
