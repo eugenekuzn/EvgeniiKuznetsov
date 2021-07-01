@@ -1,4 +1,4 @@
-package ru.training.at.hw3;
+package ru.training.at.hw4.homepageobjects;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -38,7 +38,7 @@ public class HeaderOfHomePageObjects {
             case "METALS & COLORS":
                 return metalsNColorsLink.getText();
             default:
-                return null;
+                return "matches not found";
         }
     }
 

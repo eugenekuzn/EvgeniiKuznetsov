@@ -25,11 +25,14 @@ public class LayoutCheckingTest extends TestProperties {
         Assert.assertEquals(homePage.getHeaderOfHomePageObjects().getUsername(), "ROMAN IOVLEV");
 
         //5. Assert that there are 4 items on the header section are displayed and they have proper texts
-        Assert.assertEquals(homePage.getHeaderOfHomePageObjects().getHeaderElementText(home), "HOME");
-        Assert.assertEquals(homePage.getHeaderOfHomePageObjects().getHeaderElementText(contactForm), "CONTACT FORM");
-        Assert.assertEquals(homePage.getHeaderOfHomePageObjects().getHeaderElementText(service), "SERVICE");
+        Assert.assertEquals(homePage.getHeaderOfHomePageObjects().getHeaderElementText(home.toUpperCase()), "HOME");
+        Assert.assertEquals(homePage.getHeaderOfHomePageObjects().getHeaderElementText(contactForm.toUpperCase()),
+            "CONTACT FORM");
         Assert
-            .assertEquals(homePage.getHeaderOfHomePageObjects().getHeaderElementText(metalsNColors), "METALS & COLORS");
+            .assertEquals(homePage.getHeaderOfHomePageObjects().getHeaderElementText(service.toUpperCase()), "SERVICE");
+        Assert
+            .assertEquals(homePage.getHeaderOfHomePageObjects().getHeaderElementText(metalsNColors.toUpperCase()),
+                "METALS & COLORS");
 
         //6. Assert that there are 4 images on the Index Page and they are displayed
         homePage.getFirstImg().isDisplayed();
