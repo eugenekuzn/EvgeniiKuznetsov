@@ -38,7 +38,7 @@ public class HeaderOfHomePageObjects {
             case "METALS & COLORS":
                 return metalsNColorsLink.getText();
             default:
-                return null;
+                return "matches not found";
         }
     }
 
