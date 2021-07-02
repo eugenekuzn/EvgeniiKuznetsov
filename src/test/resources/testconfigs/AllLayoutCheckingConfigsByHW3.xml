@@ -1,0 +1,9 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="additionAndSubtractionSuite">
+  <test name="layoutTesting">
+    <classes>
+      <class name="ru.training.at.hw3.ex1.LayoutCheckingTest"/>
+      <class name="ru.training.at.hw3.ex2.CheckboxesRadioButtonsNDropdownsCheckingTest"/>
+    </classes>
+  </test>
+</suite>

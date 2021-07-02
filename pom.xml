@@ -111,7 +111,7 @@
         <version>${maven-surefire-plugin.version}</version>
         <configuration>
           <suiteXmlFiles>
-            <suiteXmlFile>${suiteXmlPATH}/AllLayoutCheckingConfigs.xml</suiteXmlFile>
+            <suiteXmlFile>${suiteXmlPATH}/AllLayoutCheckingConfigsByHW3.xml</suiteXmlFile>
           </suiteXmlFiles>
         </configuration>
       </plugin>
@@ -174,7 +174,7 @@
     </profile>
 
     <profile>
-      <id>LayoutTests</id>
+      <id>LayoutTestsHW2</id>
       <build>
         <plugins>
           <plugin>
@@ -183,7 +183,25 @@
             <version>${maven-surefire-plugin.version}</version>
             <configuration>
               <suiteXmlFiles>
-                <suiteXmlFile>${suiteXmlPATH}/AllLayoutCheckingConfigs.xml</suiteXmlFile>
+                <suiteXmlFile>${suiteXmlPATH}/AllLayoutCheckingConfigsByHW2.xml</suiteXmlFile>
+              </suiteXmlFiles>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <profile>
+      <id>LayoutTestsHW3</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <version>${maven-surefire-plugin.version}</version>
+            <configuration>
+              <suiteXmlFiles>
+                <suiteXmlFile>${suiteXmlPATH}/AllLayoutCheckingConfigsByHW3.xml</suiteXmlFile>
               </suiteXmlFiles>
             </configuration>
           </plugin>
