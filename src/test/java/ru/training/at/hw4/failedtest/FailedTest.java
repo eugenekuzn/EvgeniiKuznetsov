@@ -3,22 +3,24 @@ package ru.training.at.hw4.failedtest;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import ru.training.at.hw3.HomePage;
 import ru.training.at.hw3.NewPage;
 import ru.training.at.hw4.TestConfig;
-import ru.training.at.hw4.indexpage.IndexPage;
+import ru.training.at.hw4.listener.AllureListener;
 
+@Listeners(AllureListener.class)
 public class FailedTest extends TestConfig {
 
     @Feature("Layout Testing")
     @Story("Bad test for check Allure Plugin")
     @Test
-    public void layoutCheckingBadTest() {
+    public void layoutCheckingTest() {
         HomePage homePage = new HomePage(webDriver);
 
         //1. Open test site by URL
-        new IndexPage(webDriver).open(url);
+        new NewPage(webDriver).open(url);
 
         //2. Assert Browser title
         Assert.assertEquals(webDriver.getTitle(), "Home Page");
@@ -27,7 +29,7 @@ public class FailedTest extends TestConfig {
         homePage.login(login, password);
 
         //4. Assert Username is loggined
-        Assert.assertEquals(homePage.getHeaderOfHomePageObjects().getUsername(), "IVAN IVANOV");
+        Assert.assertEquals(homePage.getHeaderOfHomePageObjects().getUsername(), "ANDREY IVANOV");
 
         //5. Assert that there are 4 items on the header section are displayed and they have proper texts
         Assert.assertEquals(homePage.getHeaderOfHomePageObjects().getHeaderElementText(home.toUpperCase()), "HOME");

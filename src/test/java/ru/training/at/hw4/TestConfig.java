@@ -6,7 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 import ru.training.at.hw4.steps.ActionStep;
 import ru.training.at.hw4.steps.AssertionStep;
@@ -38,7 +38,7 @@ public class TestConfig extends AbstractTextComponents {
         WebDriverManager.chromedriver().setup();
     }
 
-    @BeforeClass
+    @BeforeMethod
     public void setUpEnvironment(ITestContext testContext) {
         webDriver = new ChromeDriver();
         webDriver.manage().window().maximize();
@@ -47,6 +47,7 @@ public class TestConfig extends AbstractTextComponents {
         actionStep = new ActionStep(webDriver);
         assertionStep = new AssertionStep(webDriver);
         testContext.setAttribute("driver", webDriver);
+
     }
 
     @AfterClass

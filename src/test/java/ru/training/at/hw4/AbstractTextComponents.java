@@ -13,11 +13,12 @@ public abstract class AbstractTextComponents {
     protected final String selenRadioButtonLog = "metal: value changed to Selen";
     protected final String yellowColorLog = "Colors: value changed to Yellow";
 
-    //for failed test
+    //for bad test
     protected final String home = "Home";
     protected final String contactForm = "Contact form";
     protected final String service = "Service";
     protected final String metalsNColors = "Metals & Colors";
     protected final String elementsPacks = "Elements packs";
+
 }
 

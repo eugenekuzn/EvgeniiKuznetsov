@@ -130,6 +130,7 @@
         </executions>
       </plugin>
 
+
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
@@ -141,12 +142,6 @@
           <argLine>
             -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectjweaver.version}/aspectjweaver-${aspectjweaver.version}.jar"
           </argLine>
-          <properties>
-            <property>
-              <name>listener</name>
-              <value>ru.training.at.hw4.listener.AllureListener</value>
-            </property>
-          </properties>
         </configuration>
         <dependencies>
           <dependency>

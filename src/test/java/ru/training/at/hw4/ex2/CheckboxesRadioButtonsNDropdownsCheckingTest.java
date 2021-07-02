@@ -2,9 +2,12 @@ package ru.training.at.hw4.ex2;
 
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import ru.training.at.hw4.TestConfig;
+import ru.training.at.hw4.listener.AllureListener;
 
+@Listeners(AllureListener.class)
 public class CheckboxesRadioButtonsNDropdownsCheckingTest extends TestConfig {
 
     @Feature("Layout Testing")
