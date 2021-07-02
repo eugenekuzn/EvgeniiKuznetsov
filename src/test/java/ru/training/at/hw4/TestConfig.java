@@ -53,7 +53,7 @@ public class TestConfig extends AbstractTextComponents {
     @AfterClass
     public void closingTest() {
         if (webDriver != null) {
-            webDriver.close();
+            webDriver.quit();
         }
     }
 }
