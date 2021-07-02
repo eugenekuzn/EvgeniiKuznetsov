@@ -1,10 +1,14 @@
 package ru.training.at.hw4.ex1;
 
+import io.qameta.allure.Feature;
+import io.qameta.allure.Story;
 import org.testng.annotations.Test;
 import ru.training.at.hw4.TestConfig;
 
 public class LayoutCheckingTest extends TestConfig {
 
+    @Feature("Layout Testing")
+    @Story("Checking the layout")
     @Test
     public void layoutCheckingTest() {
         //1. Open test site by URL

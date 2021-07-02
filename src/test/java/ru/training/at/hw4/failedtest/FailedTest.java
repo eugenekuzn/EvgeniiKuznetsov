@@ -1,42 +1,81 @@
 package ru.training.at.hw4.failedtest;
 
+import io.qameta.allure.Feature;
+import io.qameta.allure.Story;
+import org.testng.Assert;
 import org.testng.annotations.Test;
+import ru.training.at.hw3.HomePage;
+import ru.training.at.hw3.NewPage;
 import ru.training.at.hw4.TestConfig;
+import ru.training.at.hw4.indexpage.IndexPage;
 
 public class FailedTest extends TestConfig {
 
+    @Feature("Layout Testing")
+    @Story("Bad test for check Allure Plugin")
     @Test
-    public void checkboxesRadioButtonsNDropdownsCheckingBadTest() {
+    public void layoutCheckingBadTest() {
+        HomePage homePage = new HomePage(webDriver);
+
         //1. Open test site by URL
-        actionStep.openHomePage(url);
+        new IndexPage(webDriver).open(url);
 
         //2. Assert Browser title
-        assertionStep.assertHomePageIsOpened(checkingPage);
+        Assert.assertEquals(webDriver.getTitle(), "Home Page");
 
         //3. Perform login
-        actionStep.login(login, password);
+        homePage.login(login, password);
 
         //4. Assert Username is loggined
-        assertionStep.assertUsernameIsLogged("ANDREY IVANOV");
+        Assert.assertEquals(homePage.getHeaderOfHomePageObjects().getUsername(), "IVAN IVANOV");
 
-        //5. Open through the header menu Service -> Different Elements Page
-        actionStep.openDifferentElementsPage();
+        //5. Assert that there are 4 items on the header section are displayed and they have proper texts
+        Assert.assertEquals(homePage.getHeaderOfHomePageObjects().getHeaderElementText(home.toUpperCase()), "HOME");
+        Assert.assertEquals(homePage.getHeaderOfHomePageObjects().getHeaderElementText(contactForm.toUpperCase()),
+            "CONTACT FORM");
+        Assert
+            .assertEquals(homePage.getHeaderOfHomePageObjects().getHeaderElementText(service.toUpperCase()), "SERVICE");
+        Assert
+            .assertEquals(homePage.getHeaderOfHomePageObjects().getHeaderElementText(metalsNColors.toUpperCase()),
+                "METALS & COLORS");
 
-        //6. Select checkboxes
-        actionStep.selectCheckbox("Water");
-        actionStep.selectCheckbox("Wind");
+        //6. Assert that there are 4 images on the Index Page and they are displayed
+        homePage.getFirstImg().isDisplayed();
+        homePage.getSecondImg().isDisplayed();
+        homePage.getThirdImg().isDisplayed();
+        homePage.getFourthImg().isDisplayed();
 
-        //7. Select radio
-        actionStep.selectRadioButton("Selen");
+        //7. Assert that there are 4 texts on the Index Page under icons and they have proper text
+        Assert.assertEquals(homePage.getTextUnderFirstImg(), "To include good practices\n"
+            + "and ideas from successful\n"
+            + "EPAM project");
+        Assert.assertEquals(homePage.getTextUnderSecondImg(), "To be flexible and\n"
+            + "customizable");
+        Assert.assertEquals(homePage.getTextUnderThirdImg(), "To be multiplatform");
+        Assert.assertEquals(homePage.getTextUnderFourthImg(), "Already have good base\n"
+            + "(about 20 internal and\n"
+            + "some external projects),\n"
+            + "wish to get more…");
 
-        //8. Select in dropdown
-        actionStep.selectColorOption("Yellow");
+        //8. Assert that there is the iframe with “Frame Button” exist
+        homePage.getIFrame().isDisplayed();
 
-        //9. Assert that:
-        //9.1 for each checkbox there is an individual log row and value is corresponded to the status of checkbox
-        //9.2 for radio button there is a log row and value is corresponded to the status of radio button
-        //9.3 for dropdown there is a log row and value is corresponded to the selected value
-        assertionStep.assertLogRowNStatus(logTextComponents);
+        //9. Switch to the iframe and check that there is “Frame Button” in the iframe
+        webDriver.switchTo().frame(homePage.getIFrame());
+        homePage.getFrameOnHomePage().getFrameButton().isDisplayed();
+
+        //10. Switch to original window back
+        webDriver.switchTo().defaultContent();
+
+        //11. Assert that there are 5 items in the Left Section are displayed and they have proper text
+        Assert.assertEquals(homePage.getLeftSideMenuOfHomePageObjects().getLeftSideMenuElementText(home), "Home");
+        Assert.assertEquals(homePage.getLeftSideMenuOfHomePageObjects().getLeftSideMenuElementText(contactForm),
+            "Contact form");
+        Assert.assertEquals(homePage.getLeftSideMenuOfHomePageObjects().getLeftSideMenuElementText(service), "Service");
+        Assert.assertEquals(homePage.getLeftSideMenuOfHomePageObjects().getLeftSideMenuElementText(metalsNColors),
+            "Metals & Colors");
+        Assert.assertEquals(homePage.getLeftSideMenuOfHomePageObjects().getLeftSideMenuElementText(elementsPacks),
+            "Elements packs");
     }
 }
 

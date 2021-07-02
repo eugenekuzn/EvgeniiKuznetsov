@@ -1,10 +1,14 @@
 package ru.training.at.hw4.ex2;
 
+import io.qameta.allure.Feature;
+import io.qameta.allure.Story;
 import org.testng.annotations.Test;
 import ru.training.at.hw4.TestConfig;
 
 public class CheckboxesRadioButtonsNDropdownsCheckingTest extends TestConfig {
 
+    @Feature("Layout Testing")
+    @Story("Checking radio buttons, checkboxes and dropdowns work")
     @Test
     public void checkboxesRadioButtonsNDropdownsCheckingTest() {
         //1. Open test site by URL

@@ -4,13 +4,10 @@
     <listener class-name="ru.training.at.hw4.listener.AllureListener"/>
   </listeners>
   <test name="layoutTesting">
-    <packages>
-      <package name="ru.training.at.hw4.*"/>
-    </packages>
-    <!--    <classes>-->
-    <!--      <class name="ru.training.at.hw4.ex1.LayoutCheckingTest"/>-->
-    <!--      <class name="ru.training.at.hw4.ex2.CheckboxesRadioButtonsNDropdownsCheckingTest"/>-->
-    <!--      <class name="ru.training.at.hw4.failedtest.FailedTest"/>-->
-    <!--    </classes>-->
+        <classes>
+          <class name="ru.training.at.hw4.ex1.LayoutCheckingTest"/>
+          <class name="ru.training.at.hw4.ex2.CheckboxesRadioButtonsNDropdownsCheckingTest"/>
+          <class name="ru.training.at.hw4.failedtest.FailedTest"/>
+        </classes>
   </test>
 </suite>
