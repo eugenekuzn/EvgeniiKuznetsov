@@ -34,7 +34,7 @@ public class LeftSideMenuOfHomePageObjects {
             case "Elements packs":
                 return leftElementsPacksLink.getText();
             default:
-                return null;
+                return "matches not found";
         }
     }
 }
