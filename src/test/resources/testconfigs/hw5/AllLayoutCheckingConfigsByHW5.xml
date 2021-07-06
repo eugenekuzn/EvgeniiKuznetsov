@@ -1,0 +1,8 @@
+<suite name="AllLayoutCheckingConfigsByHW5.xml">
+  <test name="layoutTesting">
+    <classes>
+      <class name="ru.training.at.hw5.TestRunner"/>
+    </classes>
+  </test>
+</suite>
+
