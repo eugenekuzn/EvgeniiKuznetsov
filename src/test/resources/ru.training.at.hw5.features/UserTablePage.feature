@@ -1,25 +1,14 @@
 Feature: Checking that User Table Page contains elements and this elements are displayed
-
   Scenario: User Table Page test
-
     Given I open JDI GitHub site
-
     And I login as user "Roman Iovlev"
-
     When I click on "Service" button in Header
-
     And I click on "User Table" button in Service dropdown
-
     Then "User Table" page should be opened
-
     And 6 Number Type Dropdowns should be displayed on Users Table on User Table Page
-
     And 6 Usernames should be displayed on Users Table on User Table Page
-
     And 6 Description texts under images should be displayed on Users Table on User Table Page
-
     And 6 checkboxes should be displayed on Users Table on User Table Page
-
     And User table should contain following values:
       | Number | User             | Description                      |
 
@@ -34,7 +23,6 @@ Feature: Checking that User Table Page contains elements and this elements are d
       | 5      | Yoshi Tannamuri  | Cyclope some description         |
 
       | 6      | Giovanni Rovelli | Hulk some description            |
-
     And droplist should contain in column Type for user Roman
       | Dropdown Values |
 

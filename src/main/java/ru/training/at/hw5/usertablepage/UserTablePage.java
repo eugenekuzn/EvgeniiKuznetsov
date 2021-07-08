@@ -45,7 +45,8 @@ public class UserTablePage {
 
     public void descriptionIsDisplayed(String[] textUnderImages) {
         List<String> checkingText = Arrays.asList(textUnderImages);
-        checkingText.forEach(textUnderImage -> Assert.assertEquals(textUnderImage, userTableElements.getDescription(textUnderImage)));
+        checkingText.forEach(
+            textUnderImage -> Assert.assertEquals(textUnderImage, userTableElements.getDescription(textUnderImage)));
     }
 
     public void checkboxesIsDisplayed() {
