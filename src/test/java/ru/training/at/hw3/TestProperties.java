@@ -7,6 +7,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeTest;
+import ru.training.at.hw4.steps.ActionStep;
+import ru.training.at.hw4.steps.AssertionStep;
 
 public class TestProperties {
 
@@ -21,6 +23,7 @@ public class TestProperties {
     protected final String elementsPacks = "Elements packs";
 
     protected static WebDriver webDriver;
+
 
     @BeforeTest
     public void setUpTest() {
