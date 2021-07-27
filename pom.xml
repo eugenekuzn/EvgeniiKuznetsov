@@ -34,6 +34,11 @@
     <cucumber-java.version>6.10.4</cucumber-java.version>
     <jdi-light-html.version>1.3.13</jdi-light-html.version>
     <json.version>20210307</json.version>
+    <rest-assured.version>4.3.3</rest-assured.version>
+    <hamcrest-core.version>2.2</hamcrest-core.version>
+    <gson.version>2.8.6</gson.version>
+    <jsonschema2pojo-maven-plugin.version>1.0.2</jsonschema2pojo-maven-plugin.version>
+    <jdi-dark.version>1.1.9</jdi-dark.version>
   </properties>
 
   <dependencies>
@@ -113,10 +118,59 @@
       <version>${jdi-light-html.version}</version>
     </dependency>
 
+    <dependency>
+      <groupId>com.epam.jdi</groupId>
+      <artifactId>jdi-dark</artifactId>
+      <version>${jdi-dark.version}</version>
+    </dependency>
+
+
+    <dependency>
+      <groupId>io.rest-assured</groupId>
+      <artifactId>rest-assured</artifactId>
+      <version>${rest-assured.version}</version>
+    </dependency>
+
+
+    <dependency>
+      <groupId>org.hamcrest</groupId>
+      <artifactId>hamcrest-core</artifactId>
+      <version>${hamcrest-core.version}</version>
+      <scope>test</scope>
+    </dependency>
+
+
+    <dependency>
+      <groupId>com.google.code.gson</groupId>
+      <artifactId>gson</artifactId>
+      <version>${gson.version}</version>
+    </dependency>
+
   </dependencies>
 
   <build>
     <plugins>
+      <plugin>
+        <groupId>org.jsonschema2pojo</groupId>
+        <artifactId>jsonschema2pojo-maven-plugin</artifactId>
+        <version>${jsonschema2pojo-maven-plugin.version}</version>
+        <configuration>
+          <sourceDirectory>${basedir}/src/main/resources/schemes</sourceDirectory>
+          <outputDirectory>${basedir}/src/main/java</outputDirectory>
+          <targetPackage>beans</targetPackage>
+          <addCompileSourceRoot>true</addCompileSourceRoot>
+          <sourceType>json</sourceType>
+          <annotationStyle>gson</annotationStyle>
+        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>generate</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
       <plugin>
         <groupId>io.qameta.allure</groupId>
         <artifactId>allure-maven</artifactId>
@@ -166,7 +220,7 @@
         <version>${maven-surefire-plugin.version}</version>
         <configuration>
           <suiteXmlFiles>
-            <suiteXmlFile>${suiteXmlPATH}/hw7/MetalsColorsTestConfigsByHW7.xml</suiteXmlFile>
+            <suiteXmlFile>${suiteXmlPATH}/hw9/TrelloRestApiTestConfigsByHW9.xml</suiteXmlFile>
           </suiteXmlFiles>
           <argLine>
             -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectjweaver.version}/aspectjweaver-${aspectjweaver.version}.jar"
@@ -357,6 +411,24 @@
             <configuration>
               <suiteXmlFiles>
                 <suiteXmlFile>${suiteXmlPATH}/hw7/MetalsColorsTestConfigsByHW7.xml</suiteXmlFile>
+              </suiteXmlFiles>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <profile>
+      <id>TrelloApiTest</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <version>3.0.0-M5</version>
+            <configuration>
+              <suiteXmlFiles>
+                <suiteXmlFile>${suiteXmlPATH}/hw9/TrelloRestApiTestConfigsByHW9.xml</suiteXmlFile>
               </suiteXmlFiles>
             </configuration>
           </plugin>
