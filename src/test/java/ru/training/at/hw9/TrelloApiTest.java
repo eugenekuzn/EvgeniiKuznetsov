@@ -17,20 +17,20 @@ import org.testng.annotations.Test;
 import ru.training.at.hw9.dataprovider.TrelloDataProvider;
 import ru.training.at.hw9.response.TrelloResponse;
 
-public class TrelloApiTest extends MainProperty {
+public class TrelloApiTest extends BaseTest {
 
     @Test()
     public void createTheBoard(ITestContext context) {
         TrelloResponse answer = getTheOnlyAnswer(
             apiBuilder.authorization().setEndpoint(BOARDS)
                       .setMethod(Method.POST)
-                      .setName(BOARD_NAME)
+                      .setName(MainProperty.BOARD_NAME)
                       .buildRequest()
                       .sendRequest()
         );
-        context.setAttribute(BOARDS_ID, answer.getId());
+        context.setAttribute(MainProperty.BOARDS_ID, answer.getId());
 
-        assertThat("The board was created: ", answer.getName().equals(BOARD_NAME));
+        assertThat("The board was created: ", answer.getName().equals(MainProperty.BOARD_NAME));
     }
 
     @Test(dependsOnMethods = {"createTheBoard"})
@@ -39,10 +39,10 @@ public class TrelloApiTest extends MainProperty {
             apiBuilder.authorization().setEndpoint(BOARDS)
                       .setMethod(Method.GET)
                       .buildRequest()
-                      .sendRequest((String) context.getAttribute(BOARDS_ID))
+                      .sendRequest((String) context.getAttribute(MainProperty.BOARDS_ID))
         );
 
-        assertThat("The board exist: ", answer.getId().equals(context.getAttribute(BOARDS_ID)));
+        assertThat("The board exist: ", answer.getId().equals(context.getAttribute(MainProperty.BOARDS_ID)));
     }
 
     @Test(dependsOnMethods = {"createTheBoard"})
@@ -50,11 +50,11 @@ public class TrelloApiTest extends MainProperty {
         TrelloResponse answer = getTheOnlyAnswer(
             apiBuilder.authorization().setEndpoint(BOARDS)
                       .setMethod(Method.PUT)
-                      .setName(NEW_BOARD_NAME)
+                      .setName(MainProperty.NEW_BOARD_NAME)
                       .buildRequest()
-                      .sendRequest((String) context.getAttribute(BOARDS_ID))
+                      .sendRequest((String) context.getAttribute(MainProperty.BOARDS_ID))
         );
-        assertThat("Name of board equal expected new name: ", answer.getName().equals(NEW_BOARD_NAME));
+        assertThat("Name of board equal expected new name: ", answer.getName().equals(MainProperty.NEW_BOARD_NAME));
     }
 
     @Test(dependsOnMethods = {"createTheBoard"})
@@ -64,7 +64,7 @@ public class TrelloApiTest extends MainProperty {
                       .setMethod(Method.PUT)
                       .changePrefs(BACKGROUND, "orange")
                       .buildRequest()
-                      .sendRequest((String) context.getAttribute(BOARDS_ID))
+                      .sendRequest((String) context.getAttribute(MainProperty.BOARDS_ID))
         );
         assertThat("Board color is changed: ", answer.getPrefs().getBackground().equals("orange"));
     }
@@ -80,7 +80,7 @@ public class TrelloApiTest extends MainProperty {
                       .changePrefs(PERMISSION_LEVEL, permissionLevel)
                       .changePrefs(COMMENTS, comments)
                       .buildRequest()
-                      .sendRequest((String) context.getAttribute(BOARDS_ID))
+                      .sendRequest((String) context.getAttribute(MainProperty.BOARDS_ID))
         );
         assertThat("Permission level is changed: ", answer.getPrefs().getPermissionLevel().equals(permissionLevel));
         assertThat("Comments is disabled: ", answer.getPrefs().getComments().equals(comments));
@@ -91,14 +91,14 @@ public class TrelloApiTest extends MainProperty {
         TrelloResponse answer = getTheOnlyAnswer(
             apiBuilder.authorization().setEndpoint(LISTS)
                       .setMethod(Method.POST)
-                      .setIdBoard((String) context.getAttribute(BOARDS_ID))
-                      .setName(LIST_NAME)
+                      .setIdBoard((String) context.getAttribute(MainProperty.BOARDS_ID))
+                      .setName(MainProperty.LIST_NAME)
                       .buildRequest()
                       .sendRequest()
         );
-        context.setAttribute(LISTS_ID, answer.getId());
+        context.setAttribute(MainProperty.LISTS_ID, answer.getId());
 
-        assertThat("The list was created: ", answer.getName().equals(LIST_NAME));
+        assertThat("The list was created: ", answer.getName().equals(MainProperty.LIST_NAME));
     }
 
     @Test(dependsOnMethods = {"createTheList"})
@@ -106,14 +106,14 @@ public class TrelloApiTest extends MainProperty {
         TrelloResponse answer = getTheOnlyAnswer(
             apiBuilder.authorization().setEndpoint(CARDS)
                       .setMethod(Method.POST)
-                      .setIdList((String) context.getAttribute(LISTS_ID))
-                      .setName(CARD_NAME)
+                      .setIdList((String) context.getAttribute(MainProperty.LISTS_ID))
+                      .setName(MainProperty.CARD_NAME)
                       .buildRequest()
                       .sendRequest()
         );
-        context.setAttribute(CARDS_ID, answer.getId());
+        context.setAttribute(MainProperty.CARDS_ID, answer.getId());
 
-        assertThat("The card was created: ", answer.getName().equals(CARD_NAME));
+        assertThat("The card was created: ", answer.getName().equals(MainProperty.CARD_NAME));
     }
 
     @Test(dataProvider = "createTheBoardWithCustomPrefsProvider",
@@ -129,7 +129,7 @@ public class TrelloApiTest extends MainProperty {
                       .buildRequest()
                       .sendRequest()
         );
-        context.setAttribute(CUSTOM_BOARDS_ID, answer.getId());
+        context.setAttribute(MainProperty.CUSTOM_BOARDS_ID, answer.getId());
 
         assertThat("The custom board was created: ", answer.getName().equals(boardName));
         assertThat("Voting permission is \"observers\": ",
@@ -145,14 +145,6 @@ public class TrelloApiTest extends MainProperty {
         apiBuilder.authorization().setEndpoint(BOARDS)
                   .setMethod(Method.DELETE)
                   .buildRequest()
-                  .sendRequest((String) context.getAttribute(CUSTOM_BOARDS_ID));
-    }
-
-    @AfterTest
-    public void cleanTestEnvironment(ITestContext context) {
-        apiBuilder.authorization().setEndpoint(BOARDS)
-                  .setMethod(Method.DELETE)
-                  .buildRequest()
-                  .sendRequest((String) context.getAttribute(BOARDS_ID));
+                  .sendRequest((String) context.getAttribute(MainProperty.CUSTOM_BOARDS_ID));
     }
 }

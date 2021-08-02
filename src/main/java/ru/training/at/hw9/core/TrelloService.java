@@ -23,7 +23,7 @@ import ru.training.at.hw9.params.Endpoints;
 import ru.training.at.hw9.params.TrelloBoardPrefs;
 import ru.training.at.hw9.response.TrelloResponse;
 
-public class TrelloService extends MainProperty {
+public class TrelloService {
 
     private Method requestMethod;
     private static URI REQ_URI;
@@ -48,14 +48,17 @@ public class TrelloService extends MainProperty {
 
         private Method requestMethod = Method.GET;
 
+        public ApiBuilder() {
+        }
+
         public ApiBuilder authorization() {
-            parameters.put("key", KEY);
-            parameters.put("token", TOKEN);
+            parameters.put("key", MainProperty.KEY);
+            parameters.put("token", MainProperty.TOKEN);
             return this;
         }
 
         public ApiBuilder setEndpoint(Endpoints endpoint) {
-            new TrelloService().setREQ_URI(URI.create(BASE_URL + endpoint.toString()));
+            new TrelloService().setREQ_URI(URI.create(MainProperty.BASE_URL + endpoint.toString()));
             return this;
         }
 
