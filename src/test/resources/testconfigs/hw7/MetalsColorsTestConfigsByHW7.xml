@@ -1,0 +1,8 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="layoutTesting">
+  <test name="metalsNColorsDataTest">
+    <classes>
+      <class name="ru.training.at.hw7.MetalsNColorsPageElementsTest"/>
+    </classes>
+  </test>
+</suite>
