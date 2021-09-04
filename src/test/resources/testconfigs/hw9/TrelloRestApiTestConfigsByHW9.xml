@@ -1,0 +1,8 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="ApiTesting">
+  <test name="trelloApiTest">
+    <classes>
+      <class name="ru.training.at.hw9.TrelloApiTest"/>
+    </classes>
+  </test>
+</suite>
